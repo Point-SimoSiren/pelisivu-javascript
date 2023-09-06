@@ -1,3 +1,31 @@
+//////////////////// MOPOT /////////////////////////////////////
+function mopot() {
+
+  document.getElementById("listaus").innerHTML = "<h4>Loading mopedi data...</h4>"
+
+let x = "<table><thead><th>Id</th><th>Merkki</th></thead><tbody>"
+
+const url = 'http://localhost:5100/api/mopot'
+
+try {
+	fetch(url)
+    .then(res => res.json()) // Muutetaan json -> .js muotoon
+    .then(mopot => mopot.map(m => { // loopataan läpi oliot p = yksittäinen postaus 
+        x += `<tr><td>${m.id}</td><td>${m.merkki}</td></tr>` // Muodostetaan rivit
+        }
+      ))
+    
+      setTimeout(() => {
+        x += `</tbody></table>` // Lisätään taulukkoon lopputägit
+      document.getElementById("listaus").innerHTML = x}
+      , 1000 )
+	
+} catch (error) {
+	alert(error)
+}
+}
+
+
 //////////////////// POSTS ////////////////////////////////////////
 function posts() {
 
